@@ -3,31 +3,15 @@ using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 
-//CarManager carManager = new CarManager(new EfCarDal());
-//Car car = new Car { Id = 3, BrandId = 2, ColorId = 3, DailyPrice = 1500, ModelYear = "2015", Description = "Temiz az yakan kiralık araba" };
-
-
-//ColorManager colorManager = new ColorManager(new EfColorDal());
-//var colors = colorManager.GetAll();
-
-//foreach (var color in colors)
-//{
-//    Console.WriteLine(color.Name);
-//}
-
 CarManager carManager = new CarManager(new EfCarDal());
-var carDetails = carManager.GetCarDetails();
 
-foreach (var carDto in carDetails)
+Car car = new Car { Id = 5, BrandId = 3, ColorId = 2, DailyPrice = 1500, Description = "Araba gibi araba", ModelYear = "2020" };
+
+carManager.Add(car);
+
+
+foreach (var carDetail in carManager.GetCarDetails().Data)
 {
-    Console.WriteLine("{0} - {1} - {2} - {3}", carDto.CarName, carDto.BrandName, carDto.ColorName, carDto.DailyPrice);
+    Console.WriteLine("{0} / {1}", carDetail.CarName, carDetail.BrandName);
 }
 
-
-
-//carManager.Add(car);
-
-//foreach (var c in carManager.GetAll())
-//{
-//    Console.WriteLine(c.Description);
-//}
