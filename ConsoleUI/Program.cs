@@ -3,15 +3,14 @@ using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 
-CarManager carManager = new CarManager(new EfCarDal());
+Customer customer = new Customer { Id = 2, UserId = 3, CompanyName = "EmreBLK" };
 
-Car car = new Car { Id = 5, BrandId = 3, ColorId = 2, DailyPrice = 1500, Description = "Araba gibi araba", ModelYear = "2020" };
+CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
 
-carManager.Add(car);
+customerManager.Add(customer);
 
-
-foreach (var carDetail in carManager.GetCarDetails().Data)
+foreach (var customerDto in customerManager.GetAll().Data)
 {
-    Console.WriteLine("{0} / {1}", carDetail.CarName, carDetail.BrandName);
+    Console.WriteLine(customerDto.CompanyName);
 }
 
